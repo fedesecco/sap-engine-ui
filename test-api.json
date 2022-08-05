@@ -1,0 +1,39 @@
+[
+    {
+        "coins" : 10,
+        "health" : 10,
+        "trophies" : 0,
+        "round" : 1
+    },
+    {
+        "pet1" : "pet-fish",
+        "pet2" : "pet-fish",
+        "pet3" : "pet-fish",
+        "pet4" : "pet-fish",
+        "pet5" : "pet-fish"
+    },
+    {
+        "pet-food1" : "",
+        "pet-food2" : "",
+        "pet-food3" : "",
+        "pet-food4" : "",
+        "pet-food5" : ""
+    },
+    {
+        "shop1" : "pet-fish",
+        "shop2" : "pet-fish",
+        "shop3" : "pet-fish",
+        "shop4" : "pet-fish",
+        "shop5" : "pet-fish"
+        },
+    {
+        "shop-food1" : "food-apple",
+        "shop-food2" : "food-apple",
+        "shop-food3" : "food-apple"
+    },
+    {
+        "suggested-action" : "",
+        "target" : "",
+        "destination" : ""
+    }
+]
