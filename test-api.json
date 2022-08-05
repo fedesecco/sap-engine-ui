@@ -1,39 +1,28 @@
-[
-    {
-        "coins" : 10,
-        "health" : 10,
-        "trophies" : 0,
-        "round" : 1
-    },
-    {
-        "pet1" : "pet-fish",
-        "pet2" : "pet-fish",
-        "pet3" : "pet-fish",
-        "pet4" : "pet-fish",
-        "pet5" : "pet-fish"
-    },
-    {
-        "pet-food1" : "",
-        "pet-food2" : "",
-        "pet-food3" : "",
-        "pet-food4" : "",
-        "pet-food5" : ""
-    },
-    {
-        "shop1" : "pet-fish",
-        "shop2" : "pet-fish",
-        "shop3" : "pet-fish",
-        "shop4" : "pet-fish",
-        "shop5" : "pet-fish"
-        },
-    {
-        "shop-food1" : "food-apple",
-        "shop-food2" : "food-apple",
-        "shop-food3" : "food-apple"
-    },
-    {
-        "suggested-action" : "",
-        "target" : "",
-        "destination" : ""
-    }
-]
+{
+    "coins" : 10,
+    "health" : 10,
+    "trophies" : 0,
+    "round" : 1,
+    "pets":[
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
+        null,
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0}
+    ],
+    "shop":[
+        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
+        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
+        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
+        null,
+        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3}
+    ],
+    "shop-food": [
+        {"type": "food-apple", "is-frozen": false, "price" : 3},
+        {"type": "food-apple", "is-frozen": false, "price" : 3},
+        {"type": "food-apple", "is-frozen": false, "price" : 3}
+    ],
+    "suggested-action" : "buy",
+    "target" : "shop[0]",
+    "destination" : ""
+}

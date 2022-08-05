@@ -1,8 +1,3 @@
-petX = i tuoi animali. Può essere vuoto.
-pet-foodX = il cibo che ha quell'animale. Può essere vuoto.
-shopX = animale in vendita. Può essere vuoto.
-shop-foodX = cibo in vendita. Può essere vuoto.
+
 
 suggested-action = azione da fare. Possibili azioni: buy, sell, roll, end-turn, freeze, move. Non può essere vuoto.
-target: punto di partenza dell'azione, ovvero l'animale che vendo, o quale animale compro. Deve avere lo stesso nome dello slot. Esempio: pet1. Può essere vuoto.
-destination: Se serve, il punto in cui mettere la cosa comprata/spostata. Deve avere lo stesso nome dello slot. Esempio: pet1. Può essere vuoto.

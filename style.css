@@ -13,46 +13,57 @@ body{
 /* STATS BAR */
 #stats-bar{
     font-size: 3rem;
-    margin-bottom: 11%;
+    margin-bottom: 10%;
     padding-top: 1%;
     padding-left: 1%;
 }
 
-/* PET GRID */
-#pet-grid {  display: grid;
-    grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr 4.5fr;
-    gap: 0% 0px;
-    grid-auto-flow: row;
-    align-content: end;
-    grid-template-areas: "Empty1 Pet1 Pet2 Pet3 Pet4 Pet5 Empty2";
+/* PET ROW */
+#pets-row {
+    margin-left: 25%;
     margin-bottom: 5%;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0% 0px; 
+    grid-template-areas: "."; 
+    align-content: stretch; 
 }
-#Empty1 { grid-area: Empty1; }
-#Empty2 { grid-area: Empty2; }
-#Pet1 { grid-area: Pet1; }
-#Pet2 { grid-area: Pet2; }
-#Pet3 { grid-area: Pet3; }
-#Pet4 { grid-area: Pet4; }
-#Pet5 { grid-area: Pet5; }
 
-/* SHOP GRID */
-#shop-grid {  display: grid;
-    grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+/* SHOP ROW */
+#shop-row {  
+    margin-left: 15%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
     gap: 0% 0px;
     grid-auto-flow: row;
-    align-content: end;
-    grid-template-areas: "Empty4 Shop1 Shop2 Shop3 Shop4 Shop5 Food1 Food2 Food3 Empty5";
+    align-content: stretch;
+    grid-template-areas: "shop-pets shop-food";
+    overflow: auto;
 }
-#Empty4 { grid-area: Empty4; }
-#Empty5 { grid-area: Empty5; }
-#Shop1 { grid-area: Shop1; }
-#Shop2 { grid-area: Shop2; }
-#Shop3 { grid-area: Shop3; }
-#Shop4 { grid-area: Shop4; }
-#Shop5 { grid-area: Shop5; }
-#Food1 { grid-area: Food1; }
-#Food2 { grid-area: Food2; }
-#Food3 { grid-area: Food3; }
+#shop-pets { grid-area: shop-pets; }
+#shop-food { grid-area: shop-food; }
+
+/* FLEX INSIDE ROWS */
+#pets,#shop-pets,#shop-food {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: center;
+    align-content: stretch;
+}
+
+.flex-item {
+    height: 18vh;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+}
 
 /* HIDDEN */
 .hidden{
