@@ -18,6 +18,20 @@ body{
     padding-left: 1%;
 }
 
+/* ANIMLAS BORDER */
+.bordered-asset {
+    filter: 
+    drop-shadow(-1px -1px 0px black) 
+    drop-shadow(2px -1px 0px black) 
+    drop-shadow(2px 2px 0px black)
+    drop-shadow(-1px 2px 0px black)
+}
+
+.no-shadow {
+    filter: 
+    drop-shadow(0px 0px 0px black)
+}
+
 /* PET ROW */
 #pets-row {
     margin-left: 25%;
@@ -63,6 +77,30 @@ body{
     flex-basis: auto;
     align-self: auto;
     order: 0;
+    margin-left: 0.5vw;
+}
+
+/* PET OR FOOD ELEMENTS */
+.asset {
+    position: relative;
+}
+.pet-attack-value, .pet-health-value {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 4.5vh;
+    position: absolute;
+    bottom: 0;
+    min-width: 5.5vh;
+    text-align: center;
+}
+.pet-attack-value {
+    background-image: url("https://api.iconify.design/fa6-solid:hand-back-fist.svg?color=grey");
+    left: 6%;
+}
+.pet-health-value {
+    background-image: url("https://api.iconify.design/mdi:heart.svg?color=red");
+    right: 6%;
 }
 
 /* HIDDEN */

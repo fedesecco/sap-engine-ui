@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="User interface for Super Auto Pets move predictor">
+    <meta name="author" content="Federico Secco">
+
+    <!--ICONIFY-->
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="stats-bar">
+        <span class="iconify" data-icon="twemoji:coin" data-inline="true"></span>:<span id="coins"></span>
+        <span class="iconify" data-icon="mdi:heart" data-inline="true" style="color: red"></span>:<span id="health"></span>
+        <span class="iconify" data-icon="fxemoji:trophy" data-inline="true"></span>:<span id="cups"></span>
+        <span class="iconify" data-icon="twemoji:hourglass-done" data-inline="true"></span></span>:<span id="turn"></span>
+    </div>
+    <!-- ANIMALI IN GIOCO: -->
+    <div id="pets-row">
+        <div id="pets">
+            <!-- ANIMALE GENERATO DA JS: -->
+            <div class="asset" id="pet-x">
+                <img class="flex-item bordered-asset" src="assets/pet-bat.svg" alt="" id="pet-img-x">
+                <span class="pet-attack-value">50</span>
+                <span class="pet-health-value">50</span>
+                <img class="pet-held-food"></img>
+            </div>
+
+        </div>
+    </div>
+    <div id="shop-row">
+        <div id="shop-pets">
+            <!-- SHOP ANIMALE GENERATO DA JS: -->
+            <div class="asset" id="pet-x">
+                <img class="flex-item bordered-asset" src="assets/pet-bat.svg" alt="" id="pet-img-x">
+                <span class="pet-attack-value">50</span>
+                <span class="pet-health-value">50</span>
+                <img class="pet-held-food"></img>
+            </div>
+
+        </div>
+        <div id="shop-food">
+            <!-- CIBO GENERATO DA JS: -->
+            <img class="flex-item" src="assets/food-cupcake.svg" alt="pet-1">
+
+            <img class="flex-item" src="assets/food-cupcake.svg" alt="pet-1">
+            <img class="flex-item" src="assets/food-cupcake.svg" alt="pet-1">
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -4,25 +4,25 @@
     "trophies" : 0,
     "round" : 1,
     "pets":[
-        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
-        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
-        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0},
+        {"type": "pet-bat", "food": "food-apple", "health": 40, "temporaryHealth": 0, "attack": 20, "temporaryAttack" : 0},
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
         null,
-        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0}
+        {"type": "pet-fish", "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0}
     ],
     "shop":[
-        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
-        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
-        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3},
+        {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
+        {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
+        {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
         null,
-        {"type": "pet-fish", "is-frozen": false, "health": 4, "temporary-health": 0, "attack": 2, "temporary-attack" : 0, "price" : 3}
+        {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3}
     ],
     "shop-food": [
-        {"type": "food-apple", "is-frozen": false, "price" : 3},
-        {"type": "food-apple", "is-frozen": false, "price" : 3},
-        {"type": "food-apple", "is-frozen": false, "price" : 3}
+        {"type": "food-apple", "isFrozen": false, "price" : 3},
+        {"type": "food-apple", "isFrozen": false, "price" : 3},
+        {"type": "food-apple", "isFrozen": false, "price" : 3}
     ],
-    "suggested-action" : "buy",
+    "suggestedAction" : "buy",
     "target" : "shop[0]",
     "destination" : ""
 }
