@@ -15,6 +15,7 @@ async function generateAssets() {
         <img class="flex-item bordered-asset" src="assets/pet-bat.svg" alt="" id="pet-img-x">
         <span class="pet-attack-value" id="attack-pet-X">X</span>
         <span class="pet-health-value" id="health-pet-X">X</span>
+        <span class="held-food" id="held-food-pet-X">X</span>
     </div>
     */
     data.pets.map((pet, index) => {
@@ -39,9 +40,16 @@ async function generateAssets() {
             animalHealth.setAttribute("id", "health-pet-"+index);
             animalHealth.innerHTML=pet.health+pet.temporaryHealth;
 
+            let animalHeldFood = document.createElement("img");
+            animalHeldFood.setAttribute("src", "assets/"+pet.food+".svg");
+            animalHeldFood.setAttribute("alt", pet.food);
+            animalHeldFood.setAttribute("class", "held-food");
+            animalHeldFood.setAttribute("id", "held-food-pet-"+index);
+
             playedAnimal.appendChild(animalImg);
             playedAnimal.appendChild(animalAttack);
             playedAnimal.appendChild(animalHealth);
+            playedAnimal.appendChild(animalHeldFood);
 
             document.getElementById("pets").appendChild(playedAnimal);
         }
@@ -53,11 +61,11 @@ async function generateAssets() {
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
             animalImg.setAttribute("src", "assets/empty-asset.png");
+            animalImg.setAttribute("alt", "empty space");
 
             playedAnimal.appendChild(animalImg);
             document.getElementById("pets").appendChild(playedAnimal);
         }
-
     });
 
     /* GENERATE SHOP ANIMALS */
@@ -97,6 +105,7 @@ async function generateAssets() {
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
             animalImg.setAttribute("src", "assets/empty-asset.png");
+            animalImg.setAttribute("alt", "empty space");
 
             playedAnimal.appendChild(animalImg);
             document.getElementById("shop-pets").appendChild(playedAnimal);
@@ -105,5 +114,34 @@ async function generateAssets() {
     });
 
     /* GENERATE FOOD */
+    data.shopFood.map((food, index) => {
+        if(food != null){
+            let playedAnimal = document.createElement("div");
+            playedAnimal.setAttribute("class", "asset");
+            playedAnimal.setAttribute("id", "food-"+index);
+
+            let animalImg = document.createElement("img");
+            animalImg.setAttribute("class", "flex-item bordered-asset");
+            animalImg.setAttribute("src", "assets/"+food.type+".svg");
+            animalImg.setAttribute("alt", food.type);
+            animalImg.setAttribute("id", "food-img-"+index);
+
+            playedAnimal.appendChild(animalImg);
+            document.getElementById("shop-food").appendChild(playedAnimal);
+        }
+        else{
+            let playedAnimal = document.createElement("div");
+            playedAnimal.setAttribute("class", "asset");
+            playedAnimal.setAttribute("id", "food-"+index);
+
+            let animalImg = document.createElement("img");
+            animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
+            animalImg.setAttribute("src", "assets/empty-asset.png");
+            animalImg.setAttribute("alt", "empty space");
+
+            playedAnimal.appendChild(animalImg);
+            document.getElementById("shop-food").appendChild(playedAnimal);
+        }
+    });
 }
 generateAssets();

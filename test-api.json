@@ -17,9 +17,9 @@
         null,
         {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3}
     ],
-    "shop-food": [
+    "shopFood": [
         {"type": "food-apple", "isFrozen": false, "price" : 3},
-        {"type": "food-apple", "isFrozen": false, "price" : 3},
+        null,
         {"type": "food-apple", "isFrozen": false, "price" : 3}
     ],
     "suggestedAction" : "buy",

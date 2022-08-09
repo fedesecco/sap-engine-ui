@@ -84,7 +84,7 @@ body{
 .asset {
     position: relative;
 }
-.pet-attack-value, .pet-health-value {
+.pet-attack-value, .pet-health-value{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -101,6 +101,13 @@ body{
 .pet-health-value {
     background-image: url("https://api.iconify.design/mdi:heart.svg?color=red");
     right: 6%;
+}
+.held.food{
+    position: absolute;
+    max-height: 1vh;
+    max-width: 1vh;
+    top: 0;
+    right: 0;
 }
 
 /* HIDDEN */
