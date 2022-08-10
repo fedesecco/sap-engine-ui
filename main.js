@@ -43,7 +43,7 @@ async function generateAssets() {
             let animalHeldFood = document.createElement("img");
             animalHeldFood.setAttribute("src", "assets/"+pet.food+".svg");
             animalHeldFood.setAttribute("alt", pet.food);
-            animalHeldFood.setAttribute("class", "held-food");
+            animalHeldFood.setAttribute("class", "held-food bordered-asset");
             animalHeldFood.setAttribute("id", "held-food-pet-"+index);
 
             playedAnimal.appendChild(animalImg);
@@ -121,7 +121,7 @@ async function generateAssets() {
             playedAnimal.setAttribute("id", "food-"+index);
 
             let animalImg = document.createElement("img");
-            animalImg.setAttribute("class", "flex-item bordered-asset");
+            animalImg.setAttribute("class", "flex-item bordered-asset shop-food");
             animalImg.setAttribute("src", "assets/"+food.type+".svg");
             animalImg.setAttribute("alt", food.type);
             animalImg.setAttribute("id", "food-img-"+index);
