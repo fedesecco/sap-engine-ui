@@ -110,8 +110,8 @@ body{
     padding-left: 6%;
     position: absolute;
     top: 0;
-    left: 0;
-    
+    left: 0.5vw;
+    font-size: 1vw;
 }
 
 .price {
@@ -133,11 +133,11 @@ body{
     max-height: 4.5vh;
     max-width: 4.5vh;
     top: 0;
-    right: 0;
+    right: 1vw;
 }
 
 .shop-food{
-    padding: 1vh;
+    padding: 0.5vh;
 }
 
 /* HIDDEN */

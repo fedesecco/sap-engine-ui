@@ -4,11 +4,11 @@
     "trophies" : 0,
     "round" : 1,
     "pets":[
-        {"type": "pet-bat", "xp" : 1, "food": "food-apple", "health": 40, "temporaryHealth": 0, "attack": 20, "temporaryAttack" : 0},
-        {"type": "pet-fish", "xp" : 2, "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
-        {"type": "pet-fish", "xp" : 3, "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
+        {"type": "pet-bat", "xp" : 1, "food": "food-melon", "health": 40, "temporaryHealth": 0, "attack": 20, "temporaryAttack" : 0},
+        {"type": "pet-fish", "xp" : 2, "food": "", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
+        {"type": "pet-fish", "xp" : 3, "food": "food-garlic", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
         null,
-        {"type": "pet-fish", "xp" : 5, "food": "food-apple", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0}
+        {"type": "pet-fish", "xp" : 5, "food": "food-chili", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0}
     ],
     "shop":[
         {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
