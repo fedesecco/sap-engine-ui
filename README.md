@@ -1,2 +1,4 @@
 # sap-engine-ui
-User interface for Super Auto Pets move predictor
+This project simply reads a json file with the status of a Super Auto Pet game, and reproduces it graphically. Used to better visualize move predictor engines.
+
+Assets taken from https://github.com/bencoveney/super-auto-pets-db
