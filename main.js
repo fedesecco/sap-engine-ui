@@ -20,40 +20,73 @@ async function generateAssets() {
     */
     data.pets.map((pet, index) => {
         if(pet != null){
+            /* ANIMAL GENERAL DIV */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "pet-"+index);
 
+            /*OWNED PET IMG */
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset");
             animalImg.setAttribute("src", "assets/"+pet.type+".svg");
             animalImg.setAttribute("alt", pet.type);
             animalImg.setAttribute("id", "pet-img-"+index);
 
+            /*OWNED PET ATK */
             let animalAttack = document.createElement("span");
-            animalAttack.setAttribute("class", "pet-attack-value");
+            animalAttack.setAttribute("class", "pet-attack-value bordered-asset");
             animalAttack.setAttribute("id", "attack-pet-"+index);
             animalAttack.innerHTML=pet.attack+pet.temporaryAttack;
 
+            /*OWNED PET HEALTH */
             let animalHealth = document.createElement("span");
-            animalHealth.setAttribute("class", "pet-health-value");
+            animalHealth.setAttribute("class", "pet-health-value bordered-asset");
             animalHealth.setAttribute("id", "health-pet-"+index);
             animalHealth.innerHTML=pet.health+pet.temporaryHealth;
 
+            /*OWNED PET HELD FOOD */
             let animalHeldFood = document.createElement("img");
             animalHeldFood.setAttribute("src", "assets/"+pet.food+".svg");
             animalHeldFood.setAttribute("alt", pet.food);
             animalHeldFood.setAttribute("class", "held-food bordered-asset");
             animalHeldFood.setAttribute("id", "held-food-pet-"+index);
 
+            /*OWNED PET XP */
+            const spanXpEmpty = "<span class=\"iconify\" data-icon=\"fluent:oval-16-filled\" data-inline=\"true\" style=\"color: black\"></span>"
+            const spanXpFull = "<span class=\"iconify\" data-icon=\"fluent:oval-16-filled\" data-inline=\"true\" style=\"color: gold\"></span>"
+            let animalXp = document.createElement("span");
+            animalXp.setAttribute("class", "pet-xp-value");
+            animalXp.setAttribute("id", "xp-pet-"+index);
+            if (pet.xp == 0){
+                animalXp.innerHTML=spanXpEmpty+spanXpEmpty;
+            }
+            else if (pet.xp ==1){
+                animalXp.innerHTML=spanXpFull+spanXpEmpty;
+            }
+            else if (pet.xp ==2){
+                animalXp.innerHTML=spanXpEmpty+spanXpEmpty+spanXpEmpty;
+            }
+            else if (pet.xp ==3){
+                animalXp.innerHTML=spanXpFull+spanXpEmpty+spanXpEmpty;
+            }
+            else if (pet.xp ==4){
+                animalXp.innerHTML=spanXpFull+spanXpFull+spanXpEmpty;
+            }
+            else if (pet.xp ==5){
+                animalXp.innerHTML=spanXpFull+spanXpFull+spanXpFull;
+            }
+
             playedAnimal.appendChild(animalImg);
+            playedAnimal.appendChild(animalXp);
             playedAnimal.appendChild(animalAttack);
             playedAnimal.appendChild(animalHealth);
             playedAnimal.appendChild(animalHeldFood);
+            
 
             document.getElementById("pets").appendChild(playedAnimal);
         }
         else{
+            /*EMPTY OWNED PET */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "pet-"+index);
@@ -75,29 +108,40 @@ async function generateAssets() {
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "pet-"+index);
 
+            /* SHOP PET IMG */
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset");
             animalImg.setAttribute("src", "assets/"+pet.type+".svg");
             animalImg.setAttribute("alt", pet.type);
             animalImg.setAttribute("id", "pet-img-"+index);
 
+            /* SHOP PET ATTACK */
             let animalAttack = document.createElement("span");
-            animalAttack.setAttribute("class", "pet-attack-value");
+            animalAttack.setAttribute("class", "pet-attack-value bordered-asset");
             animalAttack.setAttribute("id", "attack-pet-"+index);
             animalAttack.innerHTML=pet.attack+pet.temporaryAttack;
 
+            /* SHOP PET HEALTH */
             let animalHealth = document.createElement("span");
-            animalHealth.setAttribute("class", "pet-health-value");
+            animalHealth.setAttribute("class", "pet-health-value bordered-asset");
             animalHealth.setAttribute("id", "health-pet-"+index);
             animalHealth.innerHTML=pet.health+pet.temporaryHealth;
+
+            /* SHOP PET PRICE */
+            let animalPrice = document.createElement("span");
+            animalPrice.setAttribute("class", "price");
+            animalPrice.setAttribute("id", "price-pet-"+index);
+            animalPrice.innerHTML=pet.price;
 
             playedAnimal.appendChild(animalImg);
             playedAnimal.appendChild(animalAttack);
             playedAnimal.appendChild(animalHealth);
+            playedAnimal.appendChild(animalPrice);
 
             document.getElementById("shop-pets").appendChild(playedAnimal);
         }
         else{
+            /* EMPTY SHOP PET */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "pet-"+index);
@@ -120,13 +164,22 @@ async function generateAssets() {
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "food-"+index);
 
+            /* SHOP FOOD IMG */
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset shop-food");
             animalImg.setAttribute("src", "assets/"+food.type+".svg");
             animalImg.setAttribute("alt", food.type);
             animalImg.setAttribute("id", "food-img-"+index);
 
+
+            /* SHOP FOOD PRICE */
+            let animalPrice = document.createElement("span");
+            animalPrice.setAttribute("class", "price");
+            animalPrice.setAttribute("id", "price-pet-"+index);
+            animalPrice.innerHTML=food.price;
+
             playedAnimal.appendChild(animalImg);
+            playedAnimal.appendChild(animalPrice);
             document.getElementById("shop-food").appendChild(playedAnimal);
         }
         else{
