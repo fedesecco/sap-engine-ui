@@ -119,13 +119,13 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url("https://api.iconify.design/ph:coin-vertical-fill.svg?color=gold");
-    font-size: 3.5vh;
+    background-image: url("https://api.iconify.design/noto:coin.svg?color=%23888888");
+    font-size: 3vh;
     min-width: 2vw;
     position: absolute;
     top: 0;
     left: 0;
-    -webkit-text-stroke: 1px #fff;
+    -webkit-text-stroke: 0.5px #fff;
 }
 
 .held-food{
