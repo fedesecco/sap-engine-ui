@@ -11,7 +11,7 @@
         {"type": "pet-fish", "xp" : 5, "food": "food-chili", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0}
     ],
     "shop":[
-        {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
+        {"type": "pet-bat", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
         {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
         {"type": "pet-fish", "isFrozen": false, "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0, "price" : 3},
         null,
@@ -22,7 +22,7 @@
         null,
         {"type": "food-apple", "isFrozen": false, "price" : 3}
     ],
-    "suggestedAction" : "buy",
-    "target" : "shop[0]",
-    "destination" : ""
+    "suggestedAction" : "move",
+    "target" : "pets[0]",
+    "destination" : "pets[3]"
 }

@@ -17,6 +17,13 @@ body{
     padding-top: 1vh;
     padding-left: 3vw;
 }
+#action-to-do{
+    margin-left: 3vw;
+}
+#action-to-do, #action-filler-text{
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    font-size: 3vw;
+}
 
 /* ANIMLAS BORDER */
 .bordered-asset {
@@ -138,6 +145,29 @@ body{
 
 .shop-food{
     padding: 0.5vh;
+}
+
+/* SUGGESTED ACTION CLASSES */
+#destination{
+    color: rgb(144, 255, 116);
+}
+.destination{
+    background-color: rgb(144, 255, 116);
+}
+.buy{
+    background-color: gold;
+}
+.sell{
+    background-color: red;
+}
+.freeze{
+    background-color: lightblue;
+}
+.unfreeze{
+    background-color: rgb(255, 79, 47);
+}
+.move{
+    background-color: rgb(221, 116, 253);
 }
 
 /* HIDDEN */

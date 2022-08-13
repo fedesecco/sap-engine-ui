@@ -23,7 +23,7 @@ async function generateAssets() {
             /* ANIMAL GENERAL DIV */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "pet-"+index);
+            playedAnimal.setAttribute("id", "pets["+index+"]");
 
             /*OWNED PET IMG */
             let animalImg = document.createElement("img");
@@ -89,7 +89,7 @@ async function generateAssets() {
             /*EMPTY OWNED PET */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "pet-"+index);
+            playedAnimal.setAttribute("id", "pets["+index+"]");
 
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
@@ -106,7 +106,7 @@ async function generateAssets() {
         if(pet != null){
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "pet-"+index);
+            playedAnimal.setAttribute("id", "shop["+index+"]");
 
             /* SHOP PET IMG */
             let animalImg = document.createElement("img");
@@ -144,7 +144,7 @@ async function generateAssets() {
             /* EMPTY SHOP PET */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "pet-"+index);
+            playedAnimal.setAttribute("id", "shop["+index+"]");
 
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
@@ -162,7 +162,7 @@ async function generateAssets() {
         if(food != null){
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "food-"+index);
+            playedAnimal.setAttribute("id", "shopFood["+index+"]");
 
             /* SHOP FOOD IMG */
             let animalImg = document.createElement("img");
@@ -185,7 +185,7 @@ async function generateAssets() {
         else{
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "food-"+index);
+            playedAnimal.setAttribute("id", "shopFood["+index+"]");
 
             let animalImg = document.createElement("img");
             animalImg.setAttribute("class", "flex-item bordered-asset no-shadow");
@@ -196,5 +196,58 @@ async function generateAssets() {
             document.getElementById("shop-food").appendChild(playedAnimal);
         }
     });
+
+    /* HIGHLIGHT MOVE  buy; sell; freeze; unfreeze; move; roll; end-turn*/
+    let suggestedActionTarget = eval("data."+data.target);
+
+    switch (data.suggestedAction) {
+        case "buy":
+            document.getElementById("action-to-do").setAttribute("style", "color: gold");
+            document.getElementById("action-to-do").innerHTML="Buy "+suggestedActionTarget.type;
+            document.getElementById("action-filler-text").classList.remove("hidden");
+
+            document.getElementById(data.target).classList.add("buy");
+            document.getElementById(data.destination).classList.add("destination");
+            break;
+
+        case "sell":
+            document.getElementById("action-to-do").setAttribute("style", "color: red");
+            document.getElementById("action-to-do").innerHTML="Sell "+suggestedActionTarget.type;
+
+            document.getElementById(data.target).classList.add("sell");
+            break;
+
+        case "freeze":
+            document.getElementById("action-to-do").setAttribute("style", "color: lightblue");
+            document.getElementById("action-to-do").innerHTML="Freeze "+suggestedActionTarget.type;
+
+            document.getElementById(data.target).classList.add("freeze");
+            break;
+
+        case "unfreeze":
+            document.getElementById("action-to-do").setAttribute("style", "color: rgb(255, 79, 47)");
+            document.getElementById("action-to-do").innerHTML="Unfreeze "+suggestedActionTarget.type;
+
+            document.getElementById(data.target).classList.add("unfreeze");
+            break;
+
+        case "move":
+            document.getElementById("action-to-do").setAttribute("style", "color: rgb(221, 116, 253)");
+            document.getElementById("action-to-do").innerHTML="Move "+suggestedActionTarget.type;
+            document.getElementById("action-filler-text").classList.remove("hidden");
+
+            document.getElementById(data.target).classList.add("move");
+            document.getElementById(data.destination).classList.add("destination");
+            break;
+
+        case "roll":
+            document.getElementById("action-to-do").innerHTML="ROLL";
+            break;
+
+        case "end-turn":
+            document.getElementById("action-to-do").innerHTML="END TURN";
+            break;
+    }
 }
+
 generateAssets();
