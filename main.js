@@ -198,12 +198,12 @@ async function generateAssets() {
     });
 
     /* HIGHLIGHT MOVE  buy; sell; freeze; unfreeze; move; roll; end-turn*/
-    let suggestedActionTarget = eval("data."+data.target);
+    let suggestedActionTargetName = eval("data."+data.target).type.replace('pet-','').replace('food-','');
 
     switch (data.suggestedAction) {
         case "buy":
             document.getElementById("action-to-do").setAttribute("style", "color: gold");
-            document.getElementById("action-to-do").innerHTML="Buy "+suggestedActionTarget.type;
+            document.getElementById("action-to-do").innerHTML="Buy "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
             document.getElementById(data.target).classList.add("buy");
@@ -212,28 +212,28 @@ async function generateAssets() {
 
         case "sell":
             document.getElementById("action-to-do").setAttribute("style", "color: red");
-            document.getElementById("action-to-do").innerHTML="Sell "+suggestedActionTarget.type;
+            document.getElementById("action-to-do").innerHTML="Sell "+suggestedActionTargetName;
 
             document.getElementById(data.target).classList.add("sell");
             break;
 
         case "freeze":
             document.getElementById("action-to-do").setAttribute("style", "color: lightblue");
-            document.getElementById("action-to-do").innerHTML="Freeze "+suggestedActionTarget.type;
+            document.getElementById("action-to-do").innerHTML="Freeze "+suggestedActionTargetName;
 
             document.getElementById(data.target).classList.add("freeze");
             break;
 
         case "unfreeze":
             document.getElementById("action-to-do").setAttribute("style", "color: rgb(255, 79, 47)");
-            document.getElementById("action-to-do").innerHTML="Unfreeze "+suggestedActionTarget.type;
+            document.getElementById("action-to-do").innerHTML="Unfreeze "+suggestedActionTargetName;
 
             document.getElementById(data.target).classList.add("unfreeze");
             break;
 
         case "move":
             document.getElementById("action-to-do").setAttribute("style", "color: rgb(221, 116, 253)");
-            document.getElementById("action-to-do").innerHTML="Move "+suggestedActionTarget.type;
+            document.getElementById("action-to-do").innerHTML="Move "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
             document.getElementById(data.target).classList.add("move");
