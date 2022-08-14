@@ -1,3 +1,0 @@
-
-
-suggested-action = azione da fare. Possibili azioni: buy, sell, roll, end-turn, freeze, move. Non può essere vuoto.
