@@ -1,6 +1,11 @@
 async function generateAssets() {
+    /* LOAD CONFIG FILE WITH USER INFO */
+    const config = await fetch("config.json");
+    const configData = await config.json();
+    console.log(config);
+
     /* GET DATA FROM JSON FILE */
-    const response = await fetch('test-api.json');
+    const response = await fetch(configData.apiURL);
     const data = await response.json();
     console.log(data);
 
