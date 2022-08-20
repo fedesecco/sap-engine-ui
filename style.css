@@ -1,58 +1,59 @@
 html {
     height: 100%
 }
-body{
+
+body {
     margin: 0 0 0 0;
-    background-image: url("assets/background-clear2.jpg");
+    background-image: url("assets/background-clear3.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    font-family:'Comic Sans MS', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
 }
 
 /* STATS BAR */
-#stats-bar{
+#stats-bar {
     font-size: 7vh;
     margin-bottom: 20vh;
     padding-top: 1vh;
     padding-left: 3vw;
 }
-#action-to-do{
+
+#action-to-do {
     margin-left: 3vw;
 }
-#action-to-do, #action-filler-text{
+
+#action-to-do,
+#action-filler-text {
     -webkit-text-stroke: 1px rgb(0, 0, 0);
     font-size: 3vw;
 }
 
 /* ANIMLAS BORDER */
 .bordered-asset {
-    filter: 
-    drop-shadow(-1px -1px 0px black) 
-    drop-shadow(2px -1px 0px black) 
-    drop-shadow(2px 2px 0px black)
-    drop-shadow(-1px 2px 0px black)
+    filter:
+        drop-shadow(-1px -1px 0px black) drop-shadow(2px -1px 0px black) drop-shadow(2px 2px 0px black) drop-shadow(-1px 2px 0px black)
 }
 
 .no-shadow {
-    filter: 
-    drop-shadow(0px 0px 0px black)
+    filter:
+        drop-shadow(0px 0px 0px black)
 }
 
 /* PET ROW */
 #pets-row {
     margin-left: 25%;
     margin-bottom: 5%;
-    display: grid; 
-    grid-template-columns: 1fr; 
-    grid-template-rows: 1fr; 
-    gap: 0% 0px; 
-    grid-template-areas: "."; 
-    align-content: stretch; 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0% 0px;
+    grid-template-areas: ".";
+    align-content: stretch;
 }
 
 /* SHOP ROW */
-#shop-row {  
+#shop-row {
     margin-left: 15vw;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -63,11 +64,19 @@ body{
     grid-template-areas: "shop-pets shop-food";
     overflow: auto;
 }
-#shop-pets { grid-area: shop-pets; }
-#shop-food { grid-area: shop-food; }
+
+#shop-pets {
+    grid-area: shop-pets;
+}
+
+#shop-food {
+    grid-area: shop-food;
+}
 
 /* FLEX INSIDE ROWS */
-#pets,#shop-pets,#shop-food {
+#pets,
+#shop-pets,
+#shop-food {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -91,7 +100,9 @@ body{
 .asset {
     position: relative;
 }
-.pet-attack-value, .pet-health-value{
+
+.pet-attack-value,
+.pet-health-value {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -102,17 +113,20 @@ body{
     -webkit-text-stroke: 1px #fff;
 
 }
+
 .pet-attack-value {
     background-image: url("https://api.iconify.design/fa6-solid:hand-back-fist.svg?color=grey");
     left: 6%;
     min-width: 2.4vw;
 }
+
 .pet-health-value {
     background-image: url("https://api.iconify.design/mdi:heart.svg?color=red");
     right: 6%;
     min-width: 3vw;
 }
-.pet-xp-value{
+
+.pet-xp-value {
     color: gold;
     padding-left: 6%;
     position: absolute;
@@ -135,7 +149,7 @@ body{
     -webkit-text-stroke: 0.5px #fff;
 }
 
-.held-food{
+.held-food {
     position: absolute;
     max-height: 4.5vh;
     max-width: 4.5vh;
@@ -143,34 +157,40 @@ body{
     right: 1vw;
 }
 
-.shop-food{
+.shop-food {
     padding: 0.5vh;
 }
 
 /* SUGGESTED ACTION CLASSES */
-#destination{
+#destination {
     color: rgb(144, 255, 116);
 }
-.destination{
+
+.destination {
     background-color: rgb(144, 255, 116);
 }
-.buy{
+
+.buy {
     background-color: gold;
 }
-.sell{
+
+.sell {
     background-color: red;
 }
-.freeze{
+
+.freeze {
     background-color: lightblue;
 }
-.unfreeze{
+
+.unfreeze {
     background-color: rgb(255, 79, 47);
 }
-.move{
+
+.move {
     background-color: rgb(221, 116, 253);
 }
 
 /* HIDDEN */
-.hidden{
+.hidden {
     display: none;
 }

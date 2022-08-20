@@ -23,6 +23,6 @@
         {"type": "food-apple", "isFrozen": false, "price" : 3}
     ],
     "suggestedAction" : "move",
-    "target" : "pets[0]",
-    "destination" : "pets[3]"
+    "target" : [0,0],
+    "destination" : [0,4]
 }

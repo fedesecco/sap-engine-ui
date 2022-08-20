@@ -1,13 +1,31 @@
-async function generateAssets() {
-    /* LOAD CONFIG FILE WITH USER INFO */
+/* async function getdata() {
     const config = await fetch("config.json");
     const configData = await config.json();
-    console.log(config);
 
-    /* GET DATA FROM JSON FILE */
     const response = await fetch(configData.apiURL);
-    const data = await response.json();
-    console.log(data);
+    const data = await response.json().then(generateAs)
+}
+ */
+
+
+
+let configData = null;
+let data = null;
+let actionToPost = "buy";
+let elementsSelected = 0;
+let selectedAsset1 = "";
+let selectedAsset2 = "";
+
+function generateAssets() {
+    //CLEAR ANY PAST VALUE
+    document.getElementById("coins").innerHTML="";
+    document.getElementById("health").innerHTML="";
+    document.getElementById("trophies").innerHTML="";
+    document.getElementById("round").innerHTML="";
+    document.getElementById("pets").innerHTML="";
+    document.getElementById("shop-pets").innerHTML="";
+    document.getElementById("shop-food").innerHTML="";
+
 
     /* SET COINS, HEALTH, TROPHIES, ROUND */
     document.getElementById("coins").innerHTML=data.coins;
@@ -16,7 +34,7 @@ async function generateAssets() {
     document.getElementById("round").innerHTML=data.round;
 
     /* GENERATE ANIMALS:
-    <div class="asset" id="pet-x">
+    <div class="asset" id="pet-x" onClick="action(pet-0)">
         <img class="flex-item bordered-asset" src="assets/pet-bat.svg" alt="" id="pet-img-x">
         <span class="pet-attack-value" id="attack-pet-X">X</span>
         <span class="pet-health-value" id="health-pet-X">X</span>
@@ -28,7 +46,8 @@ async function generateAssets() {
             /* ANIMAL GENERAL DIV */
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
-            playedAnimal.setAttribute("id", "pets["+index+"]");
+            playedAnimal.setAttribute("id", `pets[${index}]`);
+            playedAnimal.setAttribute("onClick", `action("pets[${index}]")`);
 
             /*OWNED PET IMG */
             let animalImg = document.createElement("img");
@@ -203,7 +222,8 @@ async function generateAssets() {
     });
 
     /* HIGHLIGHT MOVE  buy; sell; freeze; unfreeze; move; roll; end-turn*/
-    let suggestedActionTargetName = eval("data."+data.target).type.replace('pet-','').replace('food-','');
+    //let suggestedActionTargetName = eval("data."+data.target).type.replace('pet-','').replace('food-','');
+    let suggestedActionTargetName = eval("data."+refactorInput(data.target)).type.replace('pet-','').replace('food-','');
 
     switch (data.suggestedAction) {
         case "buy":
@@ -211,29 +231,29 @@ async function generateAssets() {
             document.getElementById("action-to-do").innerHTML="Buy "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
-            document.getElementById(data.target).classList.add("buy");
-            document.getElementById(data.destination).classList.add("destination");
+            document.getElementById(refactorInput(data.target)).classList.add("buy");
+            document.getElementById(refactorInput(data.destination)).classList.add("destination");
             break;
 
         case "sell":
             document.getElementById("action-to-do").setAttribute("style", "color: red");
             document.getElementById("action-to-do").innerHTML="Sell "+suggestedActionTargetName;
 
-            document.getElementById(data.target).classList.add("sell");
+            document.getElementById(refactorInput(data.target)).classList.add("sell");
             break;
 
         case "freeze":
             document.getElementById("action-to-do").setAttribute("style", "color: lightblue");
             document.getElementById("action-to-do").innerHTML="Freeze "+suggestedActionTargetName;
 
-            document.getElementById(data.target).classList.add("freeze");
+            document.getElementById(refactorInput(data.target)).classList.add("freeze");
             break;
 
         case "unfreeze":
             document.getElementById("action-to-do").setAttribute("style", "color: rgb(255, 79, 47)");
             document.getElementById("action-to-do").innerHTML="Unfreeze "+suggestedActionTargetName;
 
-            document.getElementById(data.target).classList.add("unfreeze");
+            document.getElementById(refactorInput(data.target)).classList.add("unfreeze");
             break;
 
         case "move":
@@ -241,8 +261,8 @@ async function generateAssets() {
             document.getElementById("action-to-do").innerHTML="Move "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
-            document.getElementById(data.target).classList.add("move");
-            document.getElementById(data.destination).classList.add("destination");
+            document.getElementById(refactorInput(data.target)).classList.add("move");
+            document.getElementById(refactorInput(data.destination)).classList.add("destination");
             break;
 
         case "roll":
@@ -255,4 +275,90 @@ async function generateAssets() {
     }
 }
 
-generateAssets();
+function refactorInput(input){
+    if(input[0] === 0){
+        let newInput = `pets[${input[1]}]`;
+        return newInput;
+    }
+    else if(input[0] === 1){
+        let newInput = `shop[${input[1]}]`;
+        return newInput;
+    }
+    else if(input[0] === 2){
+        let newInput = `shopFood[${input[1]}]`;
+        return newInput;
+    }
+}
+
+function action(asset){
+    if(!actionToPost == "" && elementsSelected===0){
+        elementsSelected = 1;
+        selectedAsset1 = asset;
+        document.getElementById(asset).classList.add("selected");
+        attemptToPOST();
+    }
+    else if (!actionToPost == "" && elementsSelected===1){
+        if(asset==selectedAsset1){
+            elementsSelected = 0;
+            selectedAsset1 = "";
+            document.getElementById(asset).classList.remove("selected");
+        }
+        else {
+            elementsSelected = 0;
+            selectedAsset2 = asset;
+            document.getElementById(asset).classList.remove("selected");
+            attemptToPOST();
+        }
+    }
+}
+
+function attemptToPOST() {
+    if((actionToPost == "buy"||actionToPost=="move")&&selectedAsset1!=""&&selectedAsset2!=""){
+        window.post = function(url, data) {
+            return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+        }
+        post(configData.apiURL, {action: actionToPost,target: selectedAsset1, destination: selectedAsset2});
+        actionToPost = "";
+        selectedAsset1 = "";
+        selectedAsset2 = "";
+    }
+    else if (actionToPost=="sell"||actionToPost=="freeze"||actionToPost=="unfreeze"&&!selectedAsset1==""){
+        window.post = function(url, data) {
+            return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+        }
+        post(configData.apiURL, {action: actionToPost,target: selectedAsset1});
+        actionToPost = "";
+        selectedAsset1 = "";
+    }
+    else if (actionToPost=="roll"||actionToPost=="end-turn"){
+        window.post = function(url, data) {
+            return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+        }
+        post(configData.apiURL, {action: actionToPost});
+        actionToPost = "";
+    }
+}
+
+function selectAction(action){
+    actionToPost = action;
+    attemptToPOST();
+}
+function boh2(dataTemp){
+    data = dataTemp;
+    generateAssets();
+}
+function parseData(datas){
+    let dataTemp = datas.json();
+    dataTemp.then(boh2)
+}
+function boh(config) {
+    configData = config;
+        fetch(config.apiURL)
+        .then(parseData)
+}
+function jsonify(content){
+    let config = content.json();
+    config.then(boh)
+}
+fetch("./config.json")
+    .then(jsonify)
