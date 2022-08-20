@@ -290,6 +290,21 @@ function refactorInput(input){
     }
 }
 
+function refactorOutput(output){
+    if(output.startsWith("pets")){
+        let newOutput = [0,Number(output.replace('pets[', '').replace(']',''))];
+        return newOutput;
+    }
+    else if(output.startsWith("shop[")){
+        let newOutput = [1,Number(output.replace('shop[', '').replace(']',''))];
+        return newOutput;
+    }
+    else if(output.startsWith("shopFood")){
+        let newOutput = [2,Number(output.replace('shopFood[', '').replace(']',''))];
+        return newOutput;
+    }
+}
+
 function action(asset){
     if(!actionToPost == "" && elementsSelected===0){
         elementsSelected = 1;
@@ -317,7 +332,7 @@ function attemptToPOST() {
         window.post = function(url, data) {
             return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
         }
-        post(configData.apiURL, {action: actionToPost,target: selectedAsset1, destination: selectedAsset2});
+        post(configData.apiURL, {moveCode : data.moveCode,action: actionToPost,target: refactorOutput(selectedAsset1), destination: refactorOutput(selectedAsset2)});
         actionToPost = "";
         selectedAsset1 = "";
         selectedAsset2 = "";
@@ -326,7 +341,7 @@ function attemptToPOST() {
         window.post = function(url, data) {
             return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
         }
-        post(configData.apiURL, {action: actionToPost,target: selectedAsset1});
+        post(configData.apiURL, {moveCode : data.moveCode,action: actionToPost,target: refactorOutput(selectedAsset1)});
         actionToPost = "";
         selectedAsset1 = "";
     }
@@ -334,7 +349,7 @@ function attemptToPOST() {
         window.post = function(url, data) {
             return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
         }
-        post(configData.apiURL, {action: actionToPost});
+        post(configData.apiURL, {moveCode : data.moveCode,action: actionToPost});
         actionToPost = "";
     }
 }
@@ -353,7 +368,7 @@ function parseData(datas){
 }
 function boh(config) {
     configData = config;
-        fetch(config.apiURL)
+        fetch(config.apiURL+"/gamestate")
         .then(parseData)
 }
 function jsonify(content){

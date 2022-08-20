@@ -3,6 +3,7 @@
     "health" : 10,
     "trophies" : 0,
     "round" : 1,
+    "moveCode" : 1291095594,
     "pets":[
         {"type": "pet-bat", "xp" : 1, "food": "food-melon", "health": 40, "temporaryHealth": 0, "attack": 20, "temporaryAttack" : 0},
         {"type": "pet-fish", "xp" : 2, "food": "", "health": 4, "temporaryHealth": 0, "attack": 2, "temporaryAttack" : 0},
