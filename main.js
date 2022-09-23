@@ -157,10 +157,19 @@ function generateAssets() {
             animalPrice.setAttribute("id", "price-pet-"+index);
             animalPrice.innerHTML=pet.price;
 
+            /* FROZEN */
+            let frozenShopAnimal = null
+            if(pet.isFrozen){
+                frozenShopAnimal = document.createElement("div");
+                frozenShopAnimal.setAttribute("class", "frozen");
+            };
+            
             playedAnimal.appendChild(animalImg);
+            if(pet.isFrozen){playedAnimal.appendChild(frozenShopAnimal)};
             playedAnimal.appendChild(animalAttack);
             playedAnimal.appendChild(animalHealth);
             playedAnimal.appendChild(animalPrice);
+            
 
             document.getElementById("shop-pets").appendChild(playedAnimal);
         }
@@ -223,7 +232,8 @@ function generateAssets() {
 
     /* HIGHLIGHT MOVE  buy; sell; freeze; unfreeze; move; roll; end-turn*/
     //let suggestedActionTargetName = eval("data."+data.target).type.replace('pet-','').replace('food-','');
-    let suggestedActionTargetName = eval("data."+refactorInput(data.target)).type.replace('pet-','').replace('food-','');
+    //let suggestedActionTargetName = eval("data."+refactorInput(data.target)).type.replace('pet-','').replace('food-','');
+    let suggestedActionTargetName = targetToValue(data.target).type.replace('pet-','').replace('food-','');
 
     switch (data.suggestedAction) {
         case "buy":
@@ -231,29 +241,29 @@ function generateAssets() {
             document.getElementById("action-to-do").innerHTML="Buy "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
-            document.getElementById(refactorInput(data.target)).classList.add("buy");
-            document.getElementById(refactorInput(data.destination)).classList.add("destination");
+            document.getElementById(targetToString(data.target)).classList.add("buy");
+            document.getElementById(targetToString(data.destination)).classList.add("destination");
             break;
 
         case "sell":
             document.getElementById("action-to-do").setAttribute("style", "color: red");
             document.getElementById("action-to-do").innerHTML="Sell "+suggestedActionTargetName;
 
-            document.getElementById(refactorInput(data.target)).classList.add("sell");
+            document.getElementById(targetToString(data.target)).classList.add("sell");
             break;
 
         case "freeze":
             document.getElementById("action-to-do").setAttribute("style", "color: lightblue");
             document.getElementById("action-to-do").innerHTML="Freeze "+suggestedActionTargetName;
 
-            document.getElementById(refactorInput(data.target)).classList.add("freeze");
+            document.getElementById(targetToString(data.target)).classList.add("freeze");
             break;
 
         case "unfreeze":
             document.getElementById("action-to-do").setAttribute("style", "color: rgb(255, 79, 47)");
             document.getElementById("action-to-do").innerHTML="Unfreeze "+suggestedActionTargetName;
 
-            document.getElementById(refactorInput(data.target)).classList.add("unfreeze");
+            document.getElementById(targetToString(data.target)).classList.add("unfreeze");
             break;
 
         case "move":
@@ -261,8 +271,8 @@ function generateAssets() {
             document.getElementById("action-to-do").innerHTML="Move "+suggestedActionTargetName;
             document.getElementById("action-filler-text").classList.remove("hidden");
 
-            document.getElementById(refactorInput(data.target)).classList.add("move");
-            document.getElementById(refactorInput(data.destination)).classList.add("destination");
+            document.getElementById(targetToString(data.target)).classList.add("move");
+            document.getElementById(targetToString(data.destination)).classList.add("destination");
             break;
 
         case "roll":
@@ -275,18 +285,20 @@ function generateAssets() {
     }
 }
 
-function refactorInput(input){
-    if(input[0] === 0){
-        let newInput = `pets[${input[1]}]`;
-        return newInput;
+function targetToString(input){
+    switch(input[0]){
+        case 0: return `pets[${input[1]}]`;
+        case 1: return `shop[${input[1]}]`;
+        case 2: return `shopFood[${input[1]}]`;
     }
-    else if(input[0] === 1){
-        let newInput = `shop[${input[1]}]`;
-        return newInput;
-    }
-    else if(input[0] === 2){
-        let newInput = `shopFood[${input[1]}]`;
-        return newInput;
+}
+
+function targetToValue(input){
+    console.log(input[0])
+    switch(input[0]){
+        case 0: return data.pets[input[1]];
+        case 1: return data.shop[input[1]];
+        case 2: return data.shopFood[input[1]];
     }
 }
 
@@ -306,13 +318,13 @@ function refactorOutput(output){
 }
 
 function action(asset){
-    if(!actionToPost == "" && elementsSelected===0){
+    if(actionToPost != "" && elementsSelected===0){
         elementsSelected = 1;
         selectedAsset1 = asset;
         document.getElementById(asset).classList.add("selected");
         attemptToPOST();
     }
-    else if (!actionToPost == "" && elementsSelected===1){
+    else if (actionToPost != "" && elementsSelected===1){
         if(asset==selectedAsset1){
             elementsSelected = 0;
             selectedAsset1 = "";
@@ -321,7 +333,8 @@ function action(asset){
         else {
             elementsSelected = 0;
             selectedAsset2 = asset;
-            document.getElementById(asset).classList.remove("selected");
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById(selectedAsset2).classList.remove("selected");
             attemptToPOST();
         }
     }

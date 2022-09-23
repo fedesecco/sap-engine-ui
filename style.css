@@ -93,7 +93,19 @@ body {
     flex-basis: auto;
     align-self: auto;
     order: 0;
-    margin-left: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+.frozen {
+    width: 10vw;
+    height: 20vh;
+    position: absolute;
+    top: -1vh;
+    left: 0;
+    background-image: url("./assets/effect-ice.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 65%;
 }
 
 /* PET OR FOOD ELEMENTS */
@@ -164,30 +176,43 @@ body {
 /* SUGGESTED ACTION CLASSES */
 #destination {
     color: rgb(144, 255, 116);
+    border-radius: 5vh;
 }
 
 .destination {
     background-color: rgb(144, 255, 116);
+    border-radius: 5vh;
 }
 
 .buy {
     background-color: gold;
+    border-radius: 5vh;
 }
 
 .sell {
     background-color: red;
+    border-radius: 5vh;
 }
 
 .freeze {
     background-color: lightblue;
+    border-radius: 5vh;
 }
 
 .unfreeze {
     background-color: rgb(255, 79, 47);
+    border-radius: 5vh;
 }
 
 .move {
     background-color: rgb(221, 116, 253);
+    border-radius: 5vh;
+}
+
+.selected {
+    outline: 1.3vh solid rgb(238, 255, 0);
+    border-radius: 5vh;
+    outline-offset: -1.3vh;
 }
 
 /* HIDDEN */
