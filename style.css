@@ -1,3 +1,89 @@
+/* SASS FOR BUTTONS */
+.btn {
+    font-family: 'Comic Sans MS', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.btn:hover .btn-slide-show-text1 {
+    margin-left: 6vh;
+}
+
+.btn-shadow {
+    display: inline-block;
+    margin: 0.5vh;
+    font-weight: 500;
+    line-height: 3vh;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    background: none;
+    outline: none;
+    border: none;
+    letter-spacing: 0.1vw;
+    cursor: pointer;
+}
+
+.btn-shadow::before {
+    content: "";
+    height: 5vh;
+    position: absolute;
+    bottom: -1px;
+    left: 10px;
+    right: 10px;
+    z-index: 0;
+    border-radius: 2em;
+    filter: blur(14px) brightness(0.9);
+}
+
+.btn-shadow span {
+    display: inline-block;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out 0s;
+    padding: 1vh 1vw;
+    border-radius: 50em;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+}
+
+.btn-shadow:hover {
+    color: rgb(255, 255, 255);
+}
+
+.btn-shadow:hover span {
+    filter: brightness(0.9) contrast(1.2);
+    transform: scale(0.96);
+}
+
+.btn-shadow:hover::before {
+    bottom: 8px;
+    filter: blur(6px) brightness(0.8);
+    left: 15px;
+    right: 15px;
+}
+
+.btn-shadow--roll span {
+    background: rgb(255, 136, 0);
+}
+
+.btn-shadow--end-turn span {
+    background: rgb(27, 133, 0);
+}
+
+.btn-shadow--sell span {
+    background: rgb(255, 0, 0);
+}
+
+.btn-shadow--freeze span {
+    background: rgb(0, 255, 221);
+}
+
+.btn-shadow--unfreeze span {
+    background: rgb(162, 0, 255);
+}
+
+/* END OF SASS FOR BUTTONS */
+
 html {
     height: 100%
 }
@@ -215,21 +301,51 @@ body {
     outline-offset: -1.3vh;
 }
 
-/* BUTTONS (ROLL, END TURN, FREEZE, SELL ETC) */
-#button-roll {
-    height: 15vh;
-    width: 18vw;
-    position: fixed;
-    bottom: 2vh;
-    left: 3vw;
+/* FLEX CONTAINER FOR BUTTONS: SELL, FREEZE/UNFREEZE, ROLL, END-TURN,  */
+
+.btn-flex-container {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
 }
 
-#button-end-turn {
-    height: 15.5vh;
-    width: 25vw;
-    position: fixed;
-    bottom: 2vh;
-    right: 3vw;
+.btn-shadow {
+    height: 5.5vh;
+}
+
+.btn-disabled {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+    display: inline-block;
+    margin: 0.5vh;
+    font-weight: 500;
+    line-height: 3vh;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    background: none;
+    outline: none;
+    border: none;
+    letter-spacing: 0.1vw;
+    cursor: not-allowed;
+}
+
+.btn-disabled span {
+    background: rgb(139, 139, 139);
+    display: inline-block;
+    padding: 1vh 1vw;
+    border-radius: 50em;
+    position: relative;
+    z-index: 2;
 }
 
 /* HIDDEN */

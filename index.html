@@ -37,8 +37,13 @@
             
         </div>
     </div>
-    <img src="/assets/action-roll.png" alt="Roll" id="button-roll" onclick="action('button-roll')">
-    <img src="/assets/action-end-turn.png" alt="End turn" id="button-end-turn" onclick="action('button-end-turn')">
+    <div class="btn-flex-container">
+        <button class="btn btn-shadow btn-shadow--roll"> <span>ROLL</span> </button>
+        <button class="btn btn-shadow btn-shadow--freeze hidden"> <span>FREEZE</span> </button>
+        <button class="btn btn-shadow btn-shadow--unfreeze hidden"> <span>UNFREEZE</span> </button>
+        <button class="btn  btn-shadow--sell btn-shadow"> <span>SELL</span> </button>
+        <button class="btn btn-shadow btn-shadow--end-turn"> <span>END TURN</span> </button>
+    </div>
     <script type="text/javascript" src="./main.js"></script>
 </body>
 
