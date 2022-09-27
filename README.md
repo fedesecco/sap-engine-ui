@@ -9,7 +9,7 @@ This project does the following things:
 
 ##How to use sap-engine-ui
 This is an example of the gamestate file read by this project (so the file that your program should generate):
-```
+```json
 	{
         "coins" : 10, //The gold, health, trophies and round of the game in this moment
         "health" : 10,
@@ -43,7 +43,7 @@ This is an example of the gamestate file read by this project (so the file that 
 1. In the config.json file, enter the URL of your server. The sap-engine-ui will attempt a **FETCH** the /gamestate at that URL every few seconds (example: http://11.11.11/gamestate).
 2. Once the gamestate is obtained, the app will wait for the user to input a move.
 3. Once a move has been chosen, a json file will be sent with **POST** method at the server URL. example of the file:
-```
+```json
 {moveCode : data.moveCode,action: "buy",target: [1,3],destination:[0,0]}
 ```
 **moveCode**: The same code received at the beginning. Necessary to validate the move to the SAP real server.
