@@ -1,7 +1,7 @@
 {
   "name": "sap-engine-ui",
   "version": "0.3.0",
-  "description": "User interface for Super Auto Pets move predictor",
+  "description": "Alternative UI for Super Auto Pets move predictor sofwares. Can send and recive moves, visualizing them.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
