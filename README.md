@@ -7,7 +7,7 @@ This project does the following things:
 - Visually represent the gamestate, with an UI very similar to the original SAP client.
 - Register a move made by the user by clicking the pets/foods, and send it to a server so a new gamestate can be generated. (example: move pet, sell pet, buy food etc).
 
-##How to use sap-engine-ui
+## How to use sap-engine-ui
 This is an example of the gamestate file read by this project (so the file that your program should generate):
 ```json
 	{
