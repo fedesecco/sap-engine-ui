@@ -131,7 +131,7 @@ function generateAssets() {
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "shop["+index+"]");
-            playedAnimal.setAttribute("onClick", `action("shop[${index}]")`);
+            playedAnimal.setAttribute("onClick", `action("shop[${index}]", ${data.shop[index].isFrozen})`);
 
             /* SHOP PET IMG */
             let animalImg = document.createElement("img");
@@ -197,7 +197,7 @@ function generateAssets() {
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "shopFood["+index+"]");
-            playedAnimal.setAttribute("onClick", `action("shopFood[${index}]")`);
+            playedAnimal.setAttribute("onClick", `action("shopFood[${index}]", ${data.shopFood[index].isFrozen})`);
 
             /* SHOP FOOD IMG */
             let animalImg = document.createElement("img");
@@ -213,7 +213,15 @@ function generateAssets() {
             animalPrice.setAttribute("id", "price-pet-"+index);
             animalPrice.innerHTML=food.price;
 
+            /* FROZEN */
+            let frozenShopAnimal = null
+            if(food.isFrozen){
+                frozenShopAnimal = document.createElement("div");
+                frozenShopAnimal.setAttribute("class", "frozen");
+            };
+
             playedAnimal.appendChild(animalImg);
+            if(food.isFrozen){playedAnimal.appendChild(frozenShopAnimal)};
             playedAnimal.appendChild(animalPrice);
             document.getElementById("shop-food").appendChild(playedAnimal);
         }
@@ -319,16 +327,16 @@ function refactorOutput(output){
 }
 
 /* ACTIONS BASED ON USER CLICKS */
-function action(asset){
-    /* 1: PET 2: - */
+function action(asset, isFrozen){
+    /* 1:PET 2:- */
     if(asset.startsWith("pets[") && elementsSelected==0){
         elementsSelected=1;
         selectedAsset1=asset;
         document.getElementById(asset).classList.add("selected");
         document.getElementById("btn-sell").classList.remove("hidden");
     }
-    /* 1: PET 2: PET */
-    else if (asset.startsWith("pets[") && elementsSelected==1){
+    /* 1:PET 2:PET */
+    else if (asset.startsWith("pets[") && selectedAsset1.startsWith("pets[")){
         /* RESET */
         if(asset==selectedAsset1){
             document.getElementById(selectedAsset1).classList.remove("selected");
@@ -336,6 +344,7 @@ function action(asset){
             elementsSelected = 0;
             selectedAsset1 = "";
         }
+        /* MOVE */
         else if (asset.startsWith("pets[")){
             elementsSelected = 0;
             selectedAsset2 = asset;
@@ -345,55 +354,126 @@ function action(asset){
             attemptToPOST();
         }
     }
-    /* 1: PET 2: SELL */
-    else if (asset.startsWith("sell") && elementsSelected==1){
+    /* 1:PET 2:SELL */
+    else if (asset.startsWith("sell") && selectedAsset1.startsWith("pets[")){
         elementsSelected = 0;
         document.getElementById(selectedAsset1).classList.remove("selected");
         document.getElementById("btn-sell").classList.add("hidden");
         actionToPost="sell";
         attemptToPOST();
     }
-    /* 1: PET 2: SHOP PET OR FOOD */
-    else if (asset.startsWith("shop") && elementsSelected==1){
+    /* 1:PET 2:SHOP-PET OR FOOD */
+    else if (asset.startsWith("shop") && selectedAsset1.startsWith("pets[")){
+        /* RESET */
         document.getElementById(selectedAsset1).classList.remove("selected");
         document.getElementById("btn-sell").classList.add("hidden");
-        elementsSelected = 0;
         selectedAsset1 = "";
-    }
-    /* 1: SHOP PET 2: - */
-    if(asset.startsWith("shop[") && elementsSelected==0){
-        elementsSelected=1;
+        /* SELECT NEW ONE */
         selectedAsset1=asset;
         document.getElementById(asset).classList.add("selected");
-        if(data.BOH.isFrozen){
+        if(isFrozen){
             document.getElementById("btn-unfreeze").classList.remove("hidden");
         }
         else{
             document.getElementById("btn-freeze").classList.remove("hidden");
         }
     }
-
-
-    /* if(actionToPost != "" && elementsSelected===0){
-        elementsSelected = 1;
-        selectedAsset1 = asset;
+    /* 1:SHOP-PET 2:- */
+    else if(asset.startsWith("shop[") && elementsSelected==0){
+        elementsSelected=1;
+        selectedAsset1=asset;
         document.getElementById(asset).classList.add("selected");
+        if(isFrozen){
+            document.getElementById("btn-unfreeze").classList.remove("hidden");
+        }
+        else{
+            document.getElementById("btn-freeze").classList.remove("hidden");
+        }
+    }
+    /* 1:SHOP 2:PET */
+    else if (asset.startsWith("pets[") && selectedAsset1.startsWith("shop[")){
+        /* BUY */
+        elementsSelected = 0;
+        selectedAsset2 = asset;
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        actionToPost="buy";
         attemptToPOST();
     }
-    else if (actionToPost != "" && elementsSelected===1){
+    /* 1:SHOP 2:SHOP-PET OR FOOD */
+    else if (asset.startsWith("shop") && selectedAsset1.startsWith("shop[")){
+        /* RESET */
         if(asset==selectedAsset1){
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById("btn-unfreeze").classList.add("hidden");
+            document.getElementById("btn-freeze").classList.add("hidden");
             elementsSelected = 0;
             selectedAsset1 = "";
-            document.getElementById(asset).classList.remove("selected");
         }
-        else {
-            elementsSelected = 0;
-            selectedAsset2 = asset;
+        /* RESET AND SELECT THE NEW ONE */
+        else{
             document.getElementById(selectedAsset1).classList.remove("selected");
-            document.getElementById(selectedAsset2).classList.remove("selected");
-            attemptToPOST();
+            document.getElementById("btn-unfreeze").classList.add("hidden");
+            document.getElementById("btn-freeze").classList.add("hidden");
+            selectedAsset1=asset;
+            document.getElementById(asset).classList.add("selected");
+            if(isFrozen){
+                document.getElementById("btn-unfreeze").classList.remove("hidden");
+            }
+            else{
+                document.getElementById("btn-freeze").classList.remove("hidden");
+            }
         }
-    } */
+    }
+    /* 1:FOOD 2:- */
+    else if(asset.startsWith("shopFood[") && elementsSelected==0){
+        elementsSelected=1;
+        selectedAsset1=asset;
+        document.getElementById(asset).classList.add("selected");
+        if(isFrozen){
+            document.getElementById("btn-unfreeze").classList.remove("hidden");
+        }
+        else{
+            document.getElementById("btn-freeze").classList.remove("hidden");
+        }
+    }
+    /* 1:FOOD 2:PET */
+    else if (asset.startsWith("pets[") && selectedAsset1.startsWith("shopFood[")){
+        /* BUY */
+        elementsSelected = 0;
+        selectedAsset2 = asset;
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        actionToPost="buy";
+        attemptToPOST();
+    }
+    /* 1:FOOD 2:SHOP-PET OR FOOD */
+    else if (asset.startsWith("shop") && selectedAsset1.startsWith("shopFood[")){
+        /* RESET */
+        if(asset==selectedAsset1){
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById("btn-unfreeze").classList.add("hidden");
+            document.getElementById("btn-freeze").classList.add("hidden");
+            elementsSelected = 0;
+            selectedAsset1 = "";
+        }
+        /* RESET AND SELECT THE NEW ONE */
+        else{
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById("btn-unfreeze").classList.add("hidden");
+            document.getElementById("btn-freeze").classList.add("hidden");
+            selectedAsset1=asset;
+            document.getElementById(asset).classList.add("selected");
+            if(isFrozen){
+                document.getElementById("btn-unfreeze").classList.remove("hidden");
+            }
+            else{
+                document.getElementById("btn-freeze").classList.remove("hidden");
+            }
+        }
+    }
 }
 
 function attemptToPOST() {
