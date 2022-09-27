@@ -11,7 +11,7 @@
 
 let configData = null;
 let data = null;
-let actionToPost = "buy";
+let actionToPost = "";
 let elementsSelected = 0;
 let selectedAsset1 = "";
 let selectedAsset2 = "";
@@ -131,6 +131,7 @@ function generateAssets() {
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "shop["+index+"]");
+            playedAnimal.setAttribute("onClick", `action("shop[${index}]")`);
 
             /* SHOP PET IMG */
             let animalImg = document.createElement("img");
@@ -196,6 +197,7 @@ function generateAssets() {
             let playedAnimal = document.createElement("div");
             playedAnimal.setAttribute("class", "asset");
             playedAnimal.setAttribute("id", "shopFood["+index+"]");
+            playedAnimal.setAttribute("onClick", `action("shopFood[${index}]")`);
 
             /* SHOP FOOD IMG */
             let animalImg = document.createElement("img");
@@ -294,7 +296,6 @@ function targetToString(input){
 }
 
 function targetToValue(input){
-    console.log(input[0])
     switch(input[0]){
         case 0: return data.pets[input[1]];
         case 1: return data.shop[input[1]];
@@ -317,8 +318,63 @@ function refactorOutput(output){
     }
 }
 
+/* ACTIONS BASED ON USER CLICKS */
 function action(asset){
-    if(actionToPost != "" && elementsSelected===0){
+    /* 1: PET 2: - */
+    if(asset.startsWith("pets[") && elementsSelected==0){
+        elementsSelected=1;
+        selectedAsset1=asset;
+        document.getElementById(asset).classList.add("selected");
+        document.getElementById("btn-sell").classList.remove("hidden");
+    }
+    /* 1: PET 2: PET */
+    else if (asset.startsWith("pets[") && elementsSelected==1){
+        /* RESET */
+        if(asset==selectedAsset1){
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById("btn-sell").classList.add("hidden");
+            elementsSelected = 0;
+            selectedAsset1 = "";
+        }
+        else if (asset.startsWith("pets[")){
+            elementsSelected = 0;
+            selectedAsset2 = asset;
+            document.getElementById(selectedAsset1).classList.remove("selected");
+            document.getElementById("btn-sell").classList.add("hidden");
+            actionToPost="move";
+            attemptToPOST();
+        }
+    }
+    /* 1: PET 2: SELL */
+    else if (asset.startsWith("sell") && elementsSelected==1){
+        elementsSelected = 0;
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-sell").classList.add("hidden");
+        actionToPost="sell";
+        attemptToPOST();
+    }
+    /* 1: PET 2: SHOP PET OR FOOD */
+    else if (asset.startsWith("shop") && elementsSelected==1){
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-sell").classList.add("hidden");
+        elementsSelected = 0;
+        selectedAsset1 = "";
+    }
+    /* 1: SHOP PET 2: - */
+    if(asset.startsWith("shop[") && elementsSelected==0){
+        elementsSelected=1;
+        selectedAsset1=asset;
+        document.getElementById(asset).classList.add("selected");
+        if(data.BOH.isFrozen){
+            document.getElementById("btn-unfreeze").classList.remove("hidden");
+        }
+        else{
+            document.getElementById("btn-freeze").classList.remove("hidden");
+        }
+    }
+
+
+    /* if(actionToPost != "" && elementsSelected===0){
         elementsSelected = 1;
         selectedAsset1 = asset;
         document.getElementById(asset).classList.add("selected");
@@ -337,7 +393,7 @@ function action(asset){
             document.getElementById(selectedAsset2).classList.remove("selected");
             attemptToPOST();
         }
-    }
+    } */
 }
 
 function attemptToPOST() {
