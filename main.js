@@ -378,7 +378,7 @@ function action(asset, isFrozen){
             document.getElementById("btn-freeze").classList.remove("hidden");
         }
     }
-    /* 1:SHOP-PET 2:- */
+    /* 1:SHOP 2:- */
     else if(asset.startsWith("shop[") && elementsSelected==0){
         elementsSelected=1;
         selectedAsset1=asset;
@@ -425,6 +425,28 @@ function action(asset, isFrozen){
                 document.getElementById("btn-freeze").classList.remove("hidden");
             }
         }
+    }
+    /* 1:SHOP OR FOOD 2:FREEZE */
+    else if (asset.startsWith("freeze") && selectedAsset1.startsWith("shop")){
+        /* RESET AND SEND FREEZE ACTION */
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        selectedAsset2=asset;
+        elementsSelected=0;
+        actionToPost="freeze";
+        attemptToPOST();
+    }
+    /* 1:SHOP OR FOOD 2:UNFREEZE */
+    else if (asset.startsWith("unfreeze") && selectedAsset1.startsWith("shop")){
+        /* RESET AND SEND UNFREEZE ACTION */
+        document.getElementById(selectedAsset1).classList.remove("selected");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        selectedAsset2=asset;
+        elementsSelected=0;
+        actionToPost="unfreeze";
+        attemptToPOST();
     }
     /* 1:FOOD 2:- */
     else if(asset.startsWith("shopFood[") && elementsSelected==0){
@@ -474,9 +496,29 @@ function action(asset, isFrozen){
             }
         }
     }
+    /* ROLL */
+    else if (asset.startsWith("roll")){
+        if(elementsSelected==1){document.getElementById(selectedAsset1).classList.remove("selected")};
+        elementsSelected = 0;
+        document.getElementById("btn-sell").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        actionToPost="sell";
+        attemptToPOST();
+    }
+    /* END-TURN */
+    else if (asset.startsWith("end-turn")){
+        if(elementsSelected==1){document.getElementById(selectedAsset1).classList.remove("selected")};
+        elementsSelected = 0;
+        document.getElementById("btn-sell").classList.add("hidden");
+        document.getElementById("btn-freeze").classList.add("hidden");
+        document.getElementById("btn-unfreeze").classList.add("hidden");
+        actionToPost="end-turn";
+        attemptToPOST();
+    }
 }
 
-function attemptToPOST() {
+/* function attemptToPOST() {
     if((actionToPost == "buy"||actionToPost=="move")&&selectedAsset1!=""&&selectedAsset2!=""){
         window.post = function(url, data) {
             return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
@@ -493,6 +535,7 @@ function attemptToPOST() {
         post(configData.apiURL, {moveCode : data.moveCode,action: actionToPost,target: refactorOutput(selectedAsset1)});
         actionToPost = "";
         selectedAsset1 = "";
+        selectedAsset2 = "";
     }
     else if (actionToPost=="roll"||actionToPost=="end-turn"){
         window.post = function(url, data) {
@@ -500,7 +543,13 @@ function attemptToPOST() {
         }
         post(configData.apiURL, {moveCode : data.moveCode,action: actionToPost});
         actionToPost = "";
+        selectedAsset1 = "";
+        selectedAsset2 = "";
     }
+} */
+
+function attemptToPOST() { //TESTING ONLY
+    console.log(`Action: ${actionToPost}, from: ${refactorOutput(selectedAsset1)}, to: ${refactorOutput(selectedAsset2)}`);
 }
 
 function selectAction(action){
